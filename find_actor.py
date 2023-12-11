@@ -1,0 +1,46 @@
+import requests
+
+def find_actor_id(actor_name):
+    url = "https://flixster.p.rapidapi.com/search"
+    querystring = {"query": actor_name}
+    headers = {
+        "X-RapidAPI-Key": "8a01746374msh2ece6217940931cp1c4fc2jsne1b46198292b",
+        "X-RapidAPI-Host": "flixster.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers, params=querystring)
+    data = response.json()
+    # print(data)
+
+    # Extractibg info from the API response
+
+    for person in data.get('data', {}).get('search', {}).get('people', []):
+        if person.get('name') == actor_name:
+            return person.get('id')
+    return None
+
+
+def find_actor_profile(actor_id):
+    url = "https://flixster.p.rapidapi.com/actors/detail"
+    querystring = {"id":actor_id}
+    headers = {
+        "X-RapidAPI-Key": "8a01746374msh2ece6217940931cp1c4fc2jsne1b46198292b",
+        "X-RapidAPI-Host": "flixster.p.rapidapi.com"
+    }
+    response = requests.get(url, headers=headers, params=querystring)
+    data = response.json()
+    
+    response_profile = data.get('data', {}).get('person', {})
+    actor_profile = {
+        'name': response_profile.get('name'),
+        'birthDate': response_profile.get('birthDate'),
+        'headShotImage': response_profile.get('headShotImage'), 
+        'filmography': response_profile.get('filmography')
+    }
+    return actor_profile
+
+actor_id = find_actor_id("Jennifer Aniston")
+if actor_id is not None:
+    print(f"Jennifer Aniston's ID: {actor_id}")
+    print(find_actor_profile(actor_id))
+else:
+    print("Actor not found")
