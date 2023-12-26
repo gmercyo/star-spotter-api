@@ -2,6 +2,7 @@
     "dev": {
         "app_function": "app.app",
         "aws_region": "us-east-2",
+        "profile_name": "default",
         "project_name": "star-spotter-api",
         "runtime": "python3.10",
         "s3_bucket": "star-spotter"
