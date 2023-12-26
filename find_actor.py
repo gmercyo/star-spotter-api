@@ -47,9 +47,3 @@ def find_actor_profile(actor_id):
     return actor_profile
 
 
-actor_id = find_actor_id("Jennifer Aniston")
-if actor_id is not None:
-    print(f"Jennifer Aniston's ID: {actor_id}")
-    print(find_actor_profile(actor_id))
-else:
-    print("Actor not found")
