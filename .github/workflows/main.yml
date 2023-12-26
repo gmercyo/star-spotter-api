@@ -28,24 +28,15 @@ jobs:
 
     - name: Create and activate virtual environment
       run: |
-        python -m venv venv
-        source venv/bin/activate
-
-    - name: Setup aws cli
-      run: |
-        pip install awscli
-        aws configure set region us-east-2
-        aws configure set output json
-        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} 
-        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        pip install pipenv
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        pipenv install -r requirements.txt
 
     - name: Deploy to AWS Lambda
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
-        zappa update dev
+        pipenv run zappa update dev
