@@ -1,11 +1,26 @@
 import requests
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv 
+import boto3
+
 
 # Load environment variables from .env file
 load_dotenv()
 
 rapid_api_key = os.environ.get("RAPID_API_KEY")
+
+def find_actor_by_image(image_file):
+    # creating a Rekognition client
+    client = boto3.client('rekognition')
+
+    response = client.recognize_celebrities(Image={'Bytes': image_file.read()})
+
+    # parsing the response to get the 1st celebrity name
+    if response['CelebrityFaces']:
+        actor_name = response['CelebrityFaces'][0]['Name']
+        return actor_name
+    else:
+        return None
 
 
 def find_actor_id(actor_name):
