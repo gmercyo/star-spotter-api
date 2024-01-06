@@ -12,12 +12,8 @@ rapid_api_key = os.environ.get("RAPID_API_KEY")
 def find_actor_by_image(image_file):
     # creating a Rekognition client
     client = boto3.client('rekognition')
-    # /Users/godsmercyoluwanusin/Downloads/Actor_image.jpg
-
-    # open the image file
 
     response = client.recognize_celebrities(Image={'Bytes': image_file.read()})
-    print(response)
 
     # parsing the response to get the 1st celebrity name
     if response['CelebrityFaces']:
