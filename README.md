@@ -1,6 +1,6 @@
-# Scene Seeker API
+# Star Spotter API
 
-This simple Python API for the "Scene Seeker" app provides a `/status` endpoint that returns a "Hello world" message.
+Python API that allows you to take a picture of an actor in a movie scene and get their name as well as other movies they've been in. This API powers the Star Spotter App.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ To install Scene Seeker API, follow these steps:
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/Itope84/star-spotter-api.git
+git clone https://github.com/gmerco/star-spotter-api.git
 ```
 
 1. Navigate to the cloned repository:

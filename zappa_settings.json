@@ -6,7 +6,17 @@
         "runtime": "python3.10",
         "s3_bucket": "star-spotter",
         "environment_variables": {
-            "RAPID_API_KEY": "697613e8f9mshebae93db16f4687p191ee3jsn1740d0122ff4"
+            "RAPID_API_KEY": "$RAPID_API_KEY"
+        }
+    },
+    "prod": {
+        "app_function": "app.app",
+        "aws_region": "us-east-2",
+        "project_name": "star-spotter-api",
+        "runtime": "python3.10",
+        "s3_bucket": "star-spotter-prod",
+        "environment_variables": {
+            "RAPID_API_KEY": "$RAPID_API_KEY"
         }
     }
 }
