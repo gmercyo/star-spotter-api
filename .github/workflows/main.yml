@@ -32,4 +32,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
       run: |
-        pipenv run zappa update dev
+        pipenv run zappa update prod
