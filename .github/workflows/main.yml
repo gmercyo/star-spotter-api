@@ -26,10 +26,17 @@ jobs:
       run: |
         pipenv install -r requirements.txt
 
+    - name: Add environment variables to Zappa config
+      uses: jossef/action-set-json-field@v2.1
+      with:
+        file: ./zappa_settings.json
+        field: prod.environment_variables.RAPID_API_KEY
+        value: ${{ secrets.RAPID_API_KEY }}
+
     - name: Deploy to AWS Lambda
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
+        
       run: |
         pipenv run zappa update prod
