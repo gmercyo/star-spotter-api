@@ -45,6 +45,7 @@ def find_actor_id(actor_name):
 def find_actor_profile(actor_id):
     url = "https://flixster.p.rapidapi.com/actors/detail"
     querystring = {"id": actor_id}
+    print(rapid_api_key)
     headers = {
         "X-RapidAPI-Key": rapid_api_key,
         "X-RapidAPI-Host": "flixster.p.rapidapi.com",
