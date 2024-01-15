@@ -26,6 +26,7 @@ def find_actor_by_image(image_file):
 def find_actor_id(actor_name):
     url = "https://flixster.p.rapidapi.com/search"
     querystring = {"query": actor_name}
+    print(rapid_api_key)
     headers = {
         "X-RapidAPI-Key": rapid_api_key,
         "X-RapidAPI-Host": "flixster.p.rapidapi.com",
