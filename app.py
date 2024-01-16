@@ -4,8 +4,8 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-#  TODO: Enable CORS for allowed origins to enable web support.
-# CORS(app, resources={r"/*": {"origins": "*"}})
+# Allow cross-origin request from all domains
+CORS(app, resources={r"/*": {"origins": ["https://app.star-spotter.com"]}})
 
 
 @app.route("/status", methods=["GET"])
