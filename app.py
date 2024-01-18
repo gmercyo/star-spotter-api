@@ -1,13 +1,25 @@
 from find_actor import find_actor_by_image, find_actor_profile, find_actor_id
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 
 # Allow cross-origin request from all domains
 CORS(app, resources={r"/*": {"origins": ["https://app.star-spotter.com"]}})
 
-
+@app.route('/img_proxy')
+def img_proxy():
+    image_url = request.args.get('url')
+    if not image_url:
+        return "No URL provided", 400
+    
+    try:
+        response = requests.get(image_url)
+        return Response(response.content, content_type=response.headers['Content-Type'])
+    except requests.RequestException as e:
+        return str(e), 500
+    
 @app.route("/status", methods=["GET"])
 def get_status():
     return jsonify({"message": "Hello world"})
